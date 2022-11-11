@@ -21,9 +21,9 @@ const animate = () => {
   // .clearRect(x, y, w, h) -> 0, 0 == top left to entire width && height
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-  // "Selecting" EACH sprite frame and then drawing in from top-left(0, 0) to entire canvas size
+  // "Selecting" EACH sprite frame and then drawing in from top-left(0, 0) of canvas to its intended size
   // .drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh) | s = src, d = dest | dest is WHERE we place the cutout src
-  ctx.drawImage(playerImg, 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  ctx.drawImage(playerImg, 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT, 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT);
 
   // This is built-in method for a recursion loop
   requestAnimationFrame(animate);
