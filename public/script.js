@@ -11,16 +11,18 @@ const CANVAS_HEIGHT = (canvas.height = 600);
 const playerImg = new Image(); // new instance of Image is just like <img /> provide src=""
 playerImg.src = "./images/shadow_dog_frames.png";
 
-// let x = 0;
 // Animation Loop
 const animate = () => {
-  // at the beginning of each loop, clear the canvas
+  // beginning of each loop, clear canvas
   // ctx.clearRect(x-start, y-start, w, h) -> 0, 0 == top left to entire width && height
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  ctx.fillRect(x, 50, 100, 100); // test square
+
+  // Passing in the animation frames, drawing from top-left(0, 0)
+  // .drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh) | s = src, d = dest
+  ctx.drawImage(playerImg, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
   // This is built-in method for a recursion loop
-  // requestAnimationFrame(animate);
-  // x++
-}
+  requestAnimationFrame(animate);
+};
 
 animate();
