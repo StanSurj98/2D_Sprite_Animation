@@ -1,3 +1,13 @@
+// "Choose Animation" drop-down
+let playerState = "idle";
+const dropdown = document.getElementById("animations"); // target the <select>
+dropdown.addEventListener("change", (event) => {
+  console.log(event.target.value);
+  // Whenever dropdown is selected, playerState updated to that value
+  playerState = event.target.value; 
+})
+
+
 // ----- Canvas -----
 const canvas = document.getElementById("canvas-1");
 // Define the 2d context, with ctx, we can now draw anything inside
@@ -14,7 +24,6 @@ playerImg.src = "./images/shadow_dog_frames.png";
 const SPRITE_WIDTH = 575; // 6876 / 11 columns
 const SPRITE_HEIGHT = 523; // 5230 / 10 rows
 
-const playerState = "KO";
 
 // ----- Frame Controllers -----
 let gameFrame = 0; // this will help slow down the animation
