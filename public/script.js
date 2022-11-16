@@ -15,7 +15,7 @@ const SPRITE_WIDTH = 575; // 6876 / 11 columns
 const SPRITE_HEIGHT = 523; // 5230 / 10 rows
 // Frame Controllers
 let frameX = 0; // each num advances the src cutout to one frame on x or y axis
-let frameY = 4; // x = each frame in same action, y = different actions for the fox
+let frameY = 0; // x = each frame in same action, y = different actions for the fox
 let gameFrame = 0; // this will help slow down the animation
 const staggerFrames = 2 // this is DIRECTLY the amount of frames it slows down by
 
@@ -24,7 +24,7 @@ const animate = () => {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
   // cycles positions horizontally between 0 and the modulus num (frames per row)
-  let position = Math.floor(gameFrame/staggerFrames) % 11; 
+  let position = Math.floor(gameFrame/staggerFrames) % 6; 
   frameX = SPRITE_WIDTH * position;
 
 
@@ -46,3 +46,34 @@ const animate = () => {
 };
 
 animate();
+
+
+// // Now let's think about data structures for a minute
+// // We would like to have an array of objects - each object being each animation action
+// // Inside the animation action, we would like to know exactly how many frames there are in the animations
+// const spriteAnimations = [
+//   "idle" = {
+//     loc: [
+//       // it would be nice if we have the exact pixel cutoff for each frame in one animation
+//       {x: 0, y: 0},
+//       {x: 575, y: 0},
+//       {x: 1150, y: 0},
+//       {x: 1725, y: 0},
+//       {x: 2300, y: 0},
+//       {x: 2875, y: 0},
+//       {x: 3450, y: 0},
+//     ]
+//   },
+//   "jump" = {
+//     loc: []
+//   },
+//   "run" = {
+//     loc: []
+//   }
+// ];
+// // Having the loc arrays above we can just loop through them to directly access each frame
+// // we won't have to worry about how many exact frames are in one particular animation
+// console.log(spriteAnimations["idle"].loc[2].x); // 1150
+// console.log(spriteAnimations["idle"].loc.length); // 7 (would tell us exactly how many frames in one animation!)
+
+// // so now lets build this data structure programmatically!
