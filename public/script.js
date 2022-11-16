@@ -15,18 +15,14 @@ const SPRITE_WIDTH = 575; // 6876 / 11 columns
 const SPRITE_HEIGHT = 523; // 5230 / 10 rows
 // Frame Controllers
 let frameX = 0; // each num advances the src cutout to one frame on x or y axis
-let frameY = 4; // x = each frame in same action, y = different actions for the fox
+let frameY = 0; // x = each frame in same action, y = different actions for the fox
 let gameFrame = 0; // this will help slow down the animation
 const staggerFrames = 2 // this is DIRECTLY the amount of frames it slows down by
 
 // ----- Animation Loop -----
 const animate = () => {
-  // beginning of each loop, clear canvas
-  // .clearRect(x, y, w, h) -> 0, 0 == top left to entire width && height
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-  // "Selecting" EACH sprite frame and then drawing in from top-left(0, 0) of canvas to its intended size
-  // .drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh) | s = src, d = dest | dest is WHERE we place the cutout src
   ctx.drawImage(
     playerImg,
     frameX * SPRITE_WIDTH,
@@ -39,13 +35,8 @@ const animate = () => {
     SPRITE_HEIGHT
   );
 
-  if (gameFrame % staggerFrames === 0) { // For every staggerFrames frames increment frameX
-    if (frameX < 9) frameX++;
-    else frameX = 0;
-  }
 
   gameFrame++;
-  // This is built-in method for a recursion loop
   requestAnimationFrame(animate);
 };
 
