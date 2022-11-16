@@ -17,12 +17,14 @@ const SPRITE_HEIGHT = 523; // 5230 / 10 rows
 let frameX = 0; // each num advances the src cutout to one frame on x or y axis
 let frameY = 0; // x = each frame in same action, y = different actions for the fox
 let gameFrame = 0; // this will help slow down the animation
-const staggerFrames = 2 // this is DIRECTLY the amount of frames it slows down by
+const staggeredFrames = 2 // this is DIRECTLY the amount of frames it slows down by
 
 // ----- Animation Loop -----
 const animate = () => {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
+  let position = Math.floor(gameFrame/staggeredFrames) % 6; // This math is quite complex, btu just following along the tutorial for now to understand
+  // Will cycle the positions every stagger frames, up until position 6?
   ctx.drawImage(
     playerImg,
     frameX * SPRITE_WIDTH,
