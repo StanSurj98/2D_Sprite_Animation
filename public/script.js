@@ -14,6 +14,8 @@ playerImg.src = "./images/shadow_dog_frames.png";
 const SPRITE_WIDTH = 575; // 6876 / 11 columns
 const SPRITE_HEIGHT = 523; // 5230 / 10 rows
 
+const playerState = "ko";
+
 // ----- Frame Controllers -----
 let gameFrame = 0; // this will help slow down the animation
 const staggerFrames = 2; // this is DIRECTLY the amount of frames it slows down by
@@ -88,9 +90,9 @@ const animate = () => {
 
   // cycles horizontal frames between 0th to last frame per row, for each animation action
   let position =
-    Math.floor(gameFrame / staggerFrames) % spriteAnimations["run"].loc.length;
-  let frameX = spriteAnimations["run"].loc[position].x;
-  let frameY = spriteAnimations["run"].loc[position].y; 
+    Math.floor(gameFrame / staggerFrames) % spriteAnimations[playerState].loc.length;
+  let frameX = spriteAnimations[playerState].loc[position].x;
+  let frameY = spriteAnimations[playerState].loc[position].y; 
   // just access the Y value in the loc array (the row at Y pixel, the different animations)
   // !! NOTE !! => even though "position" is dynamic and keeps changing the the x-value, the y is constant for each animation 
 
