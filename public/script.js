@@ -13,12 +13,13 @@ playerImg.src = "./images/shadow_dog_frames.png";
 // Sprite Dimensions - Taken by dividing total size of png, divide by the columns & rows for each individual frame
 const SPRITE_WIDTH = 575; // 6876 / 11 columns
 const SPRITE_HEIGHT = 523; // 5230 / 10 rows
-// Frame Controllers
+
+// ----- Frame Controllers -----
 let gameFrame = 0; // this will help slow down the animation
 const staggerFrames = 2; // this is DIRECTLY the amount of frames it slows down by
 // Animation Data Structure
 const spriteAnimations = []; // empty for now that will hold all data for all animations
-// We'll eventually hard code each animation name and frame #s but for now lets test with 2
+// Holds all names and max frames data
 const animationStates = [
   {
     name: "idle",
@@ -85,11 +86,13 @@ console.log(spriteAnimations);
 const animate = () => {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-  // cycles positions horizontally between 0 and the modulus num (frames per row)
+  // cycles horizontal frames between 0th to last frame per row, for each animation action
   let position =
-    Math.floor(gameFrame / staggerFrames) % spriteAnimations["ko"].loc.length; // the max num of frames per animation
-  let frameX = SPRITE_WIDTH * position;
-  let frameY = spriteAnimations["ko"].loc[position].y; // loc[position] is "index" 
+    Math.floor(gameFrame / staggerFrames) % spriteAnimations["run"].loc.length;
+  let frameX = spriteAnimations["run"].loc[position].x;
+  let frameY = spriteAnimations["run"].loc[position].y; 
+  // just access the Y value in the loc array (the row at Y pixel, the different animations)
+  // !! NOTE !! => even though "position" is dynamic and keeps changing the the x-value, the y is constant for each animation 
 
   ctx.drawImage(
     playerImg,
