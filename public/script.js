@@ -14,7 +14,7 @@ playerImg.src = "./images/shadow_dog_frames.png";
 const SPRITE_WIDTH = 575; // 6876 / 11 columns
 const SPRITE_HEIGHT = 523; // 5230 / 10 rows
 
-const playerState = "ko";
+const playerState = "KO";
 
 // ----- Frame Controllers -----
 let gameFrame = 0; // this will help slow down the animation
