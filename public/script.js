@@ -56,7 +56,7 @@ const animationStates = [
     frames: 7,
   },
   {
-    name: "ko",
+    name: "KO",
     frames: 12,
   },
   {
