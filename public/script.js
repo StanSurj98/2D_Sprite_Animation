@@ -14,24 +14,55 @@ playerImg.src = "./images/shadow_dog_frames.png";
 const SPRITE_WIDTH = 575; // 6876 / 11 columns
 const SPRITE_HEIGHT = 523; // 5230 / 10 rows
 // Frame Controllers
-let frameX = 0; // each num advances the src cutout to one frame on x or y axis
-let frameY = 0; // x = each frame in same action, y = different actions for the fox
 let gameFrame = 0; // this will help slow down the animation
-const staggerFrames = 2 // this is DIRECTLY the amount of frames it slows down by
+const staggerFrames = 2; // this is DIRECTLY the amount of frames it slows down by
+// Animation Data Structure
+const spriteAnimations = []; // empty for now that will hold all data for all animations
+// We'll eventually hard code each animation name and frame #s but for now lets test with 2
+const animationStates = [
+  {
+    name: "idle",
+    frames: 7,
+  },
+  {
+    name: "jump",
+    frames: 7,
+  },
+];
+// Now we can map each coordinate for each frame | state = name, frames
+animationStates.forEach((state, index) => {
+  // We wanted that object that contains the loc coords of each frame in the sprite sheet
+  let frames = {
+    loc: [],
+  };
+  // Fills the loc arrays
+  for (let i = 0; i < state.frames; i++) {
+    let positionX = i * SPRITE_WIDTH; // Loop through all horizontal frames, get x pixels
+    let positionY = index * SPRITE_HEIGHT; // Loop through all vertical frames, get y pixels
+    frames.loc.push({
+      x: positionX,
+      y: positionY,
+    });
+  }
+
+  spriteAnimations[state.name] = frames;
+});
+console.log(spriteAnimations);
 
 // ----- Animation Loop -----
 const animate = () => {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
   // cycles positions horizontally between 0 and the modulus num (frames per row)
-  let position = Math.floor(gameFrame/staggerFrames) % 6; 
-  frameX = SPRITE_WIDTH * position;
-
+  let position =
+    Math.floor(gameFrame / staggerFrames) % spriteAnimations["idle"].loc.length; // the max num of frames per animation
+  let frameX = SPRITE_WIDTH * position;
+  let frameY = spriteAnimations["idle"].loc[position].y; // loc[position] is "index" 
 
   ctx.drawImage(
     playerImg,
     frameX,
-    frameY * SPRITE_HEIGHT,
+    frameY,
     SPRITE_WIDTH,
     SPRITE_HEIGHT,
     0,
@@ -40,13 +71,11 @@ const animate = () => {
     SPRITE_HEIGHT
   );
 
-
   gameFrame++;
   requestAnimationFrame(animate);
 };
 
 animate();
-
 
 // // Now let's think about data structures for a minute
 // // We would like to have an array of objects - each object being each animation action
