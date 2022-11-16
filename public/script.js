@@ -28,6 +28,38 @@ const animationStates = [
     name: "jump",
     frames: 7,
   },
+  {
+    name: "fall",
+    frames: 7,
+  },
+  {
+    name: "run",
+    frames: 9,
+  },
+  {
+    name: "dizzy",
+    frames: 11,
+  },
+  {
+    name: "sit",
+    frames: 5,
+  },
+  {
+    name: "roll",
+    frames: 7,
+  },
+  {
+    name: "bite",
+    frames: 7,
+  },
+  {
+    name: "ko",
+    frames: 12,
+  },
+  {
+    name: "getHit",
+    frames: 4,
+  },
 ];
 // Now we can map each coordinate for each frame | state = name, frames
 animationStates.forEach((state, index) => {
@@ -55,9 +87,9 @@ const animate = () => {
 
   // cycles positions horizontally between 0 and the modulus num (frames per row)
   let position =
-    Math.floor(gameFrame / staggerFrames) % spriteAnimations["idle"].loc.length; // the max num of frames per animation
+    Math.floor(gameFrame / staggerFrames) % spriteAnimations["ko"].loc.length; // the max num of frames per animation
   let frameX = SPRITE_WIDTH * position;
-  let frameY = spriteAnimations["idle"].loc[position].y; // loc[position] is "index" 
+  let frameY = spriteAnimations["ko"].loc[position].y; // loc[position] is "index" 
 
   ctx.drawImage(
     playerImg,
