@@ -6,6 +6,10 @@ Simply choose the action you would like to animate from the drop down!
 
 
 
+https://user-images.githubusercontent.com/108106480/202572204-e9319bed-453d-4d3b-be9a-b55f378d8dfc.mov
+
+
+
 ## Installation
 Fork and clone this repository onto your local machine. Install `VSCode Live Server` extension, and right click the `index.html` and select `Open with Live Server`.
 
