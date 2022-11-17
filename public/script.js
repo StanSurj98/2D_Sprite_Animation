@@ -27,7 +27,7 @@ const SPRITE_HEIGHT = 523; // 5230 / 10 rows
 
 // ----- Frame Controllers -----
 let gameFrame = 0; // this will help slow down the animation
-const staggerFrames = 2; // this is DIRECTLY the amount of frames it slows down by
+const staggerFrames = 3; // this is DIRECTLY the amount of frames it slows down by
 // Animation Data Structure
 const spriteAnimations = []; // empty for now that will hold all data for all animations
 // Holds all names and max frames data
